@@ -1,6 +1,16 @@
 import { render } from "ejs";
 import WebSocket, { WebSocketServer } from "ws";
 import { readFileSync } from "fs";
+import sql from "./db";
+
+async function testDB() {
+  const results = await sql`
+  select * from chat.messages
+  `
+  console.log(results)
+  return results
+}
+testDB()
 
 const messageTemplate = readFileSync(
   "./public/message-template.ejs"
