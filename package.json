@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
     "@types/jest": "^29.5.12",
     "@types/ws": "^8.5.12",
     "jest": "^29.7.0",
@@ -19,6 +20,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "ejs": "^3.1.10",
     "ws": "^8.18.0"
   }
 }

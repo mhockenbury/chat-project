@@ -6,58 +6,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="p-5 bg-white dark:bg-gray-900 antialiased">
-    <div
-      id="incoming-messages"
-      class=""
+    <div 
       hx-ext="ws"
       ws-connect="ws://localhost:8080"
     >
-      <div class="flex items-start gap-2.5">
-        <img
-          class="w-8 h-8 rounded-full"
-          src="avatar-svgrepo-com.svg"
-          alt="User avatar"
-        />
-        <div
-          class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
-        >
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm font-semibold text-gray-900 dark:text-white"
-              >User Name</span
-            >
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400"
-              >Timestamp</span
-            >
-          </div>
-          <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-            Message Content
-          </p>
-        </div>
-      </div>
-
-      <div class="flex items-start gap-2.5">
-        <img
-          class="w-8 h-8 rounded-full"
-          src="avatar-svgrepo-com.svg"
-          alt="User avatar"
-        />
-        <div
-          class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
-        >
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm font-semibold text-gray-900 dark:text-white"
-              >User Name</span
-            >
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400"
-              >Timestamp</span
-            >
-          </div>
-          <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-            Message Content
-          </p>
-        </div>
-      </div>
-      <form id="" class="w-100" ws-send>
+    <div id="message-window" class="h-full overflow-y-auto">
+        <div id="incoming-messages"></div>
+    </div>
+      <form id="" class="" ws-send>
         <div class="">
           <input
             placeholder="chat here"
@@ -76,7 +32,10 @@
       document.addEventListener("htmx:wsError", function (event) {});
       document.addEventListener("htmx:wsBeforeSend", function (event) {});
       document.addEventListener("htmx:wsAfterSend", function (event) {});
-      document.addEventListener("htmx:wsAfterMessage", function (event) {});
+      document.addEventListener("htmx:wsAfterMessage", function (event) {
+        var elem = document.getElementById('message-window');
+        elem.scrollTop = elem.scrollHeight;
+      });
     </script>
   </body>
 </html>
